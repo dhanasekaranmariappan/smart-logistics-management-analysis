@@ -1,0 +1,17 @@
+# Environment variables (contains your DB password!)
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# VS Code
+.vscode/
+
+# Data files (optional - large files)
+datafiles/
+
+# OS files
+.DS_Store
+Thumbs.db
