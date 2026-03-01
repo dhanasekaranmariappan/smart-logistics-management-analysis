@@ -12,11 +12,11 @@ if root_dir not in sys.path:
 from shared_db import run_query
 from sidebar import render_sidebar
 
-# ── Page Config ────────────────────────────────────────────────
+#  Page Config 
 st.set_page_config(page_title="Cost Analytics", page_icon="💰", layout="wide")
 render_sidebar()
 
-# ── CSS ────────────────────────────────────────────────────────
+#  CSS 
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
@@ -133,11 +133,11 @@ html, body, [class*="css"] { font-family: 'DM Sans', sans-serif; }
 </style>
 """, unsafe_allow_html=True)
 
-# ── Header ─────────────────────────────────────────────────────
+#  Header
 st.markdown('<div class="page-title">💰 Cost Analytics</div>', unsafe_allow_html=True)
 st.markdown('<div class="page-subtitle">Fuel, labor and operational cost breakdown across routes and couriers</div>', unsafe_allow_html=True)
 
-# ── Load Data ──────────────────────────────────────────────────
+# Load Data
 with st.spinner("Loading cost data..."):
 
     # Overall KPIs
@@ -236,7 +236,7 @@ with st.spinner("Loading cost data..."):
         LIMIT 500
     """)
 
-# ── KPI Cards ──────────────────────────────────────────────────
+# KPI Cards
 st.markdown('<div class="section-header">💵 Cost Overview</div>', unsafe_allow_html=True)
 
 row1 = [
@@ -275,7 +275,7 @@ for col, (color, icon, label, value, sub) in zip(st.columns(4), row2):
 
 st.markdown('<div class="soft-divider"></div>', unsafe_allow_html=True)
 
-# ── Cost Breakdown Charts ──────────────────────────────────────
+# Cost Breakdown Charts
 st.markdown('<div class="section-header">📊 Cost Breakdown</div>', unsafe_allow_html=True)
 
 col_c1, col_c2 = st.columns(2)
@@ -333,7 +333,7 @@ with col_c2:
 
 st.markdown('<div class="soft-divider"></div>', unsafe_allow_html=True)
 
-# ── Cost by Vehicle Type ───────────────────────────────────────
+# Cost by Vehicle Type
 st.markdown('<div class="section-header">🚗 Cost by Vehicle Type</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="chart-wrap">', unsafe_allow_html=True)
@@ -371,7 +371,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="soft-divider"></div>', unsafe_allow_html=True)
 
-# ── Top Expensive Routes ───────────────────────────────────────
+# Top Expensive Route
 st.markdown('<div class="section-header">🛣️ Most Expensive Routes</div>', unsafe_allow_html=True)
 
 col_f1, col_f2 = st.columns([1, 3])
@@ -412,7 +412,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="soft-divider"></div>', unsafe_allow_html=True)
 
-# ── Top Expensive Couriers ─────────────────────────────────────
+# Top Expensive Couriers
 st.markdown('<div class="section-header">🚴 Courier Cost Comparison</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="chart-wrap">', unsafe_allow_html=True)
@@ -449,7 +449,8 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="soft-divider"></div>', unsafe_allow_html=True)
 
-# ── High Cost Shipments Table ──────────────────────────────────
+# High Cost Shipments Table
+
 st.markdown('<div class="section-header">🔍 High Cost Shipments</div>', unsafe_allow_html=True)
 
 col_h1, col_h2 = st.columns(2)

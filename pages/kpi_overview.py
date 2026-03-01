@@ -14,7 +14,7 @@ from sidebar import render_sidebar
 st.set_page_config(page_title="KPI Overview", page_icon="📊", layout="wide")
 render_sidebar() 
 
-# ── Adaptive CSS ───────────────────────────────────────────────
+# Adaptive CSS
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
@@ -148,11 +148,11 @@ html, body, [class*="css"] {
 </style>
 """, unsafe_allow_html=True)
 
-# ── Header ─────────────────────────────────────────────────────
+# Header
 st.markdown('<div class="page-title">📊 Operations Dashboard</div>', unsafe_allow_html=True)
 st.markdown('<div class="page-subtitle">Real-time logistics performance metrics & insights</div>', unsafe_allow_html=True)
 
-# ── Load Data ──────────────────────────────────────────────────
+# Load Data
 with st.spinner("Loading metrics..."):
     kpi = run_query("""
         SELECT
@@ -177,7 +177,7 @@ with st.spinner("Loading metrics..."):
     dest_df     = run_query("SELECT destination AS city, COUNT(*) AS shipments FROM shipments GROUP BY destination ORDER BY shipments DESC LIMIT 8")
     cost_df     = run_query("SELECT ROUND(SUM(fuel_cost),2) AS Fuel, ROUND(SUM(labor_cost),2) AS Labor, ROUND(SUM(misc_cost),2) AS Misc FROM costs").iloc[0]
 
-# ── KPI Row 1 ──────────────────────────────────────────────────
+# KPI Row 1
 st.markdown('<div class="section-header">Key Performance Indicators</div>', unsafe_allow_html=True)
 
 row1 = [
@@ -216,7 +216,7 @@ for col, (color, icon, label, value, sub) in zip(st.columns(4), row2):
 
 st.markdown('<div class="soft-divider"></div>', unsafe_allow_html=True)
 
-# ── Trend + Donut ──────────────────────────────────────────────
+# Trend + Donut
 st.markdown('<div class="section-header">Shipment Trends</div>', unsafe_allow_html=True)
 col_l, col_r = st.columns([1.7, 1])
 
@@ -267,7 +267,7 @@ with col_r:
 
 st.markdown('<div class="soft-divider"></div>', unsafe_allow_html=True)
 
-# ── Origins & Destinations ─────────────────────────────────────
+# Origins & Destinations
 st.markdown('<div class="section-header">Geographic Distribution</div>', unsafe_allow_html=True)
 col_a, col_b = st.columns(2)
 
@@ -295,7 +295,7 @@ for col, df, color_scale, title in [
 
 st.markdown('<div class="soft-divider"></div>', unsafe_allow_html=True)
 
-# ── Cost Breakdown ─────────────────────────────────────────────
+# Cost Breakdown
 st.markdown('<div class="section-header">Cost Breakdown</div>', unsafe_allow_html=True)
 st.markdown('<div class="chart-wrap">', unsafe_allow_html=True)
 fig_cost = go.Figure(go.Bar(

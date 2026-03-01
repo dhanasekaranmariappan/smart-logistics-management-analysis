@@ -12,11 +12,11 @@ if root_dir not in sys.path:
 from shared_db import run_query
 from sidebar import render_sidebar
 
-# ── Page Config ────────────────────────────────────────────────
+# Page Config
 st.set_page_config(page_title="Courier Performance", page_icon="🚴", layout="wide")
 render_sidebar()
 
-# ── CSS ────────────────────────────────────────────────────────
+# CSS
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
@@ -142,11 +142,11 @@ html, body, [class*="css"] { font-family: 'DM Sans', sans-serif; }
 </style>
 """, unsafe_allow_html=True)
 
-# ── Header ─────────────────────────────────────────────────────
+# Header
 st.markdown('<div class="page-title">🚴 Courier Performance</div>', unsafe_allow_html=True)
 st.markdown('<div class="page-subtitle">Rankings, delivery efficiency and courier analytics</div>', unsafe_allow_html=True)
 
-# ── Load Data ──────────────────────────────────────────────────
+# Load Data
 with st.spinner("Loading courier data..."):
 
     # Overall KPIs
@@ -223,7 +223,7 @@ with st.spinner("Loading courier data..."):
         LIMIT 3
     """)
 
-# ── KPI Cards ──────────────────────────────────────────────────
+# KPI Cards
 st.markdown('<div class="section-header">📊 Overview Metrics</div>', unsafe_allow_html=True)
 
 row1 = [
@@ -244,7 +244,7 @@ for col, (color, icon, label, value, sub) in zip(st.columns(4), row1):
 
 st.markdown('<div class="soft-divider"></div>', unsafe_allow_html=True)
 
-# ── Top 3 Leaderboard ──────────────────────────────────────────
+#  Top 3 Leaderboard
 st.markdown('<div class="section-header">🏆 Top Performers Leaderboard</div>', unsafe_allow_html=True)
 
 if len(top3) >= 3:
@@ -270,7 +270,7 @@ if len(top3) >= 3:
 
 st.markdown('<div class="soft-divider"></div>', unsafe_allow_html=True)
 
-# ── Filters ────────────────────────────────────────────────────
+# Filters
 st.markdown('<div class="section-header">🎛️ Filter Couriers</div>', unsafe_allow_html=True)
 st.markdown('<div class="filter-card">', unsafe_allow_html=True)
 
@@ -305,7 +305,7 @@ filtered = filtered.sort_values(sort_by, ascending=False)
 
 st.caption(f"Showing {len(filtered):,} of {len(perf_df):,} couriers")
 
-# ── Charts Row ─────────────────────────────────────────────────
+# Charts Row
 st.markdown('<div class="section-header">📈 Performance Analytics</div>', unsafe_allow_html=True)
 
 col_c1, col_c2 = st.columns(2)
@@ -380,7 +380,7 @@ with col_c2:
         st.plotly_chart(fig_scatter, use_container_width=True)
     st.markdown('</div>', unsafe_allow_html=True)
     
-# ── Vehicle Type Analytics ─────────────────────────────────────
+# Vehicle Type Analytics
 st.markdown('<div class="soft-divider"></div>', unsafe_allow_html=True)
 st.markdown('<div class="section-header">🚗 Vehicle Type Breakdown</div>', unsafe_allow_html=True)
 

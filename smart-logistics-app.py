@@ -125,7 +125,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ── Sidebar Content ────────────────────────────────────────────
+# Sidebar Content
 with st.sidebar:
     # Brand
     st.markdown("""
@@ -154,7 +154,7 @@ with st.sidebar:
     </div>
     """, unsafe_allow_html=True)
 
-# ── Home Page Content ──────────────────────────────────────────
+# Home Page Content
 st.markdown("""
 <style>
 .home-title {

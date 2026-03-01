@@ -12,11 +12,11 @@ if root_dir not in sys.path:
 from shared_db import run_query
 from sidebar import render_sidebar
 
-# ── Page Config ────────────────────────────────────────────────
+# Page Config
 st.set_page_config(page_title="Shipment Search", page_icon="🔍", layout="wide")
 render_sidebar()
 
-# ── CSS ────────────────────────────────────────────────────────
+# CSS
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
@@ -89,16 +89,16 @@ html, body, [class*="css"] { font-family: 'DM Sans', sans-serif; }
 </style>
 """, unsafe_allow_html=True)
 
-# ── Header ─────────────────────────────────────────────────────
+# Header
 st.markdown('<div class="page-title">🔍 Shipment Search</div>', unsafe_allow_html=True)
 st.markdown('<div class="page-subtitle">Filter, search and explore shipment records in real-time</div>', unsafe_allow_html=True)
 
-# ── Load Filter Options ────────────────────────────────────────
+# Load Filter Options
 origins      = run_query("SELECT DISTINCT origin FROM shipments ORDER BY origin")['origin'].tolist()
 destinations = run_query("SELECT DISTINCT destination FROM shipments ORDER BY destination")['destination'].tolist()
 couriers     = run_query("SELECT courier_id, name FROM courier_staff ORDER BY name")
 
-# ── Filters Panel ──────────────────────────────────────────────
+# Filters Panel
 st.markdown('<div class="section-header">🎛️ Filters</div>', unsafe_allow_html=True)
 st.markdown('<div class="filter-card">', unsafe_allow_html=True)
 
@@ -123,7 +123,7 @@ with col3:
 
 st.markdown('</div>', unsafe_allow_html=True)
 
-# ── Build Dynamic Query ────────────────────────────────────────
+# Build Dynamic Query
 where = ["1=1"]
 
 if search_id:
@@ -174,7 +174,7 @@ query = f"""
 with st.spinner("Fetching shipments..."):
     df = run_query(query)
 
-# ── Summary Pills ──────────────────────────────────────────────
+# Summary Pills
 st.markdown('<div class="soft-divider"></div>', unsafe_allow_html=True)
 st.markdown('<div class="section-header">📊 Results Summary</div>', unsafe_allow_html=True)
 
@@ -191,7 +191,7 @@ c4.markdown(f'<span class="stat-pill pill-orange">🚛 In Transit: {in_transit:,
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-# ── Charts ─────────────────────────────────────────────────────
+# Charts
 if not df.empty:
     col_chart1, col_chart2 = st.columns(2)
 
@@ -247,7 +247,7 @@ if not df.empty:
         st.plotly_chart(fig_routes, use_container_width=True)
         st.markdown('</div>', unsafe_allow_html=True)
 
-# ── Data Table ─────────────────────────────────────────────────
+# Data Table
 st.markdown('<div class="soft-divider"></div>', unsafe_allow_html=True)
 st.markdown('<div class="section-header">📋 Shipment Records</div>', unsafe_allow_html=True)
 
