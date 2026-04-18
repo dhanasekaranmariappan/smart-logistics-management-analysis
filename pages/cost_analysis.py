@@ -3,7 +3,6 @@ import sys
 import os
 import plotly.express as px
 import plotly.graph_objects as go
-import pandas as pd
 
 root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if root_dir not in sys.path:
